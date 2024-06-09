@@ -27,7 +27,8 @@ export async function loader() {
 
   // if (!response.ok) {
     // throw new Error({message: "couldn't fetch the events"});
-    // throw new Response(JSON.stringify({ message: "couldn't fetch the events"}), { status: 500});
+  // throw new Response(JSON.stringify({ message: "couldn't fetch the events"}), { status: 500});
+  // * Use json utility method in order to create a response object with built in headers set and react router will resolve the stringify data for us while accessing the error in error element. 
     throw json({ message: "couldn't fetch the events" }, {status: 500});
   // }
   // const resData = await response.json();

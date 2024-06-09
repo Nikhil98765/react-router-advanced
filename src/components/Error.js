@@ -5,6 +5,7 @@ import MainNavigation from "./MainNavigation";
 
 export const Error = () => {
 
+  //* Access the errors when error occurred in loaders/route access.
   const error = useRouteError();
   console.log("🚀 ~ Error ~ error:", error);
 
