@@ -8,7 +8,7 @@ export const NewEventPage = () => {
 }
 
 // * Action functions are executed in browser but not in server side.
-// * Form element(from react-router) triggers the action if submit has happened in form
+// * Form element(from react-router) triggers the action if submit has happened in form when method is not get.
 export async function action({ request, params }) {
 
   const data = await request.formData();
