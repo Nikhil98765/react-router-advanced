@@ -1,15 +1,31 @@
-import { Form, useNavigate } from 'react-router-dom';
+import { Form, useActionData, useNavigate, useNavigation } from 'react-router-dom';
 
 import classes from './EventForm.module.css';
 
 function EventForm({ method, event }) {
+
+  const navigation = useNavigation();
   const navigate = useNavigate();
+  
+  //* Used to get the returned data from closest action function.
+  const actionData = useActionData(); 
+
+  const isSubmitting = navigation.state === 'submitting';
+
   function cancelHandler() {
     navigate('..');
   }
 
   return (
-    <Form method='post' className={classes.form}>
+    <Form method="post" className={classes.form}>
+      {
+        actionData && actionData.errors && 
+        <ul>
+            {Object.values(actionData.errors).map(error => {
+              return <li key={error}>{ error}</li>
+            })}
+        </ul>
+      }
       <p>
         <label htmlFor="title">Title</label>
         <input
@@ -51,10 +67,12 @@ function EventForm({ method, event }) {
         />
       </p>
       <div className={classes.actions}>
-        <button type="button" onClick={cancelHandler}>
+        <button type="button" onClick={cancelHandler} disabled={isSubmitting}>
           Cancel
         </button>
-        <button>Save</button>
+        <button disabled={isSubmitting}>
+          {isSubmitting ? "Submitting..." : "Save"}
+        </button>
       </div>
     </Form>
   );
