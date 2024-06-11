@@ -8,7 +8,7 @@ export const EventDetailPage = () => {
 
   return (
     <>
-      <EventItem event={data.event}/>
+      <EventItem event={data.event} />
     </>
   );
 }
