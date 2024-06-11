@@ -5,7 +5,6 @@ import EventsList from "./EventsList";
 function EventsPage() {
   //* We can access data on the component where we attached the loader in routeDef and as well in any component which was used in the assigned component.
   const events = useLoaderData();
-  console.log("🚀 ~ EventsPage ~ events:", events);
 
   if (events.isError) {
     return <p>{events.message}</p>
@@ -32,6 +31,5 @@ export async function loader() {
     throw json({ message: "couldn't fetch the events" }, {status: 500});
   }
   const resData = await response.json();
-  console.log("🚀 ~ loader: ~ resData:", resData);
   return resData.events;
 }
